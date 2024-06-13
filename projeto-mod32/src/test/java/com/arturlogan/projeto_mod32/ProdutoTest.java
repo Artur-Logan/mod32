@@ -19,6 +19,7 @@ public class ProdutoTest {
         // Configure o produto aqui
         produto.setNome("Nome 1");
         produto.setCodigo("Codigo 1");
+        produto.setDescricao("Descrição !");
         produtoService.cadastrar(produto);
 
         Assertions.assertNotNull(produto);

@@ -7,6 +7,7 @@ import java.util.List;
 public interface IProdutoService {
 
     public Produto cadastrar(Produto produto);
+    public Produto cadastrarNovo(Produto produto);
 
     public void excluir(Long id);
 
