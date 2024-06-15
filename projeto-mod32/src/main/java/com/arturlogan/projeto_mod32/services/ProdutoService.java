@@ -1,5 +1,6 @@
 package com.arturlogan.projeto_mod32.services;
 
+import com.arturlogan.projeto_mod32.entities.Cliente;
 import com.arturlogan.projeto_mod32.entities.Produto;
 import com.arturlogan.projeto_mod32.repositories.ProdutoRepository;
 import com.arturlogan.projeto_mod32.services.interfaces.IProdutoService;
@@ -43,6 +44,26 @@ public class ProdutoService implements IProdutoService {
             throw new DataIntegrityViolationException("Código do produto já existe: " + produto.getCodigo());
         }
         return entityManager.merge(produto);
+    }
+
+    @Override
+    public Produto atualizarDados(Produto entity, Long id) {
+        Produto produto = produtoRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+        // Atualiza apenas os campos que foram fornecidos na entidade `entity`
+        if (entity.getNome() != null) produto.setNome(entity.getNome());
+        if (entity.getCodigo() != null) produto.setCodigo(entity.getCodigo());
+        if (entity.getValor() != null) produto.setNome(entity.getNome());
+        if (entity.getDescricao() != null) produto.setDescricao(entity.getDescricao());
+
+        return produtoRepository.save(produto);
+    }
+
+    @Override
+    public Produto consultar(Long id) {
+        Optional<Produto> produto = produtoRepository.findById(id);
+
+        return produto.orElse(null);
     }
 
     public void excluir(Long id) {

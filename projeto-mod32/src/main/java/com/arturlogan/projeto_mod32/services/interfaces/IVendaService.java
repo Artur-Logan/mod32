@@ -17,5 +17,11 @@ public interface IVendaService {
 
     public Venda consultar(Long id);
 
+    public Venda atualizarDados(Venda entity, Long id);
+
+    public Venda consultarComCollection(Long id);
+
+   // public void adicionarMaisProdutosDiferentes();
+
 
 }
